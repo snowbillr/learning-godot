@@ -1,0 +1,219 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://Ball.tscn" type="PackedScene" id=2]
+[ext_resource path="res://peg.tscn" type="PackedScene" id=3]
+[ext_resource path="res://bucket.tscn" type="PackedScene" id=4]
+[ext_resource path="res://BallSpawner.gd" type="Script" id=5]
+[ext_resource path="res://assets/label_font.tres" type="DynamicFont" id=6]
+[ext_resource path="res://assets/sound/Bossy Boss.wav" type="AudioStream" id=7]
+
+[sub_resource type="Animation" id=1]
+resource_name = "spawn_zone_pan"
+length = 6.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.98, 5.96 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 16, 48 ), Vector2( 976, 48 ), Vector2( 16, 48 ) ]
+}
+
+[node name="Main" type="Node"]
+script = ExtResource( 1 )
+
+[node name="BallSpawner" type="Node" parent="."]
+script = ExtResource( 5 )
+Ball = ExtResource( 2 )
+
+[node name="BallSpawnZone" type="Polygon2D" parent="BallSpawner"]
+position = Vector2( 672, 48 )
+color = Color( 0.905882, 0.811765, 0.0588235, 0.435294 )
+polygon = PoolVector2Array( 0, 0, 50, 0, 50, 50, 0, 50 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BallSpawner/BallSpawnZone"]
+autoplay = "spawn_zone_pan"
+anims/spawn_zone_pan = SubResource( 1 )
+
+[node name="pegs" type="Node" parent="."]
+
+[node name="RigidBody2D" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 259.282, 177.902 )
+
+[node name="RigidBody2D2" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 389.848, 177.902 )
+
+[node name="RigidBody2D3" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 511.792, 177.902 )
+
+[node name="RigidBody2D4" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 649.748, 177.902 )
+
+[node name="RigidBody2D17" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 787.089, 177.902 )
+
+[node name="RigidBody2D18" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 787.089, 352.28 )
+
+[node name="RigidBody2D5" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 329.492, 272.831 )
+
+[node name="RigidBody2D6" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 460.058, 272.831 )
+
+[node name="RigidBody2D7" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 582.002, 272.831 )
+
+[node name="RigidBody2D8" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 719.958, 272.831 )
+
+[node name="RigidBody2D13" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 329.492, 434.191 )
+
+[node name="RigidBody2D14" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 460.058, 434.191 )
+
+[node name="RigidBody2D15" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 582.002, 434.191 )
+
+[node name="RigidBody2D16" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 719.958, 434.191 )
+
+[node name="RigidBody2D9" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 259.282, 352.28 )
+
+[node name="RigidBody2D10" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 389.848, 352.28 )
+
+[node name="RigidBody2D11" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 511.792, 352.28 )
+
+[node name="RigidBody2D12" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 649.748, 352.28 )
+
+[node name="RigidBody2D19" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 787.089, 517.95 )
+
+[node name="RigidBody2D29" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 923.131, 177.902 )
+
+[node name="RigidBody2D30" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 923.131, 352.28 )
+
+[node name="RigidBody2D31" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 856, 272.831 )
+
+[node name="RigidBody2D32" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 856, 434.191 )
+
+[node name="RigidBody2D33" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 923.131, 517.95 )
+
+[node name="RigidBody2D20" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 259.282, 517.95 )
+
+[node name="RigidBody2D24" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 120, 177.902 )
+
+[node name="RigidBody2D25" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 190.21, 272.831 )
+
+[node name="RigidBody2D26" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 190.21, 434.191 )
+
+[node name="RigidBody2D27" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 120, 352.28 )
+
+[node name="RigidBody2D28" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 120, 517.95 )
+
+[node name="RigidBody2D21" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 389.848, 517.95 )
+
+[node name="RigidBody2D22" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 511.792, 517.95 )
+
+[node name="RigidBody2D23" parent="pegs" instance=ExtResource( 3 )]
+position = Vector2( 649.748, 517.95 )
+
+[node name="buckets" type="Node" parent="."]
+
+[node name="bucket" parent="buckets" instance=ExtResource( 4 )]
+position = Vector2( 80, 585.274 )
+points = 30
+
+[node name="bucket2" parent="buckets" instance=ExtResource( 4 )]
+position = Vector2( 226.817, 585.274 )
+points = 20
+
+[node name="bucket3" parent="buckets" instance=ExtResource( 4 )]
+position = Vector2( 376.724, 585.274 )
+points = 10
+
+[node name="bucket4" parent="buckets" instance=ExtResource( 4 )]
+position = Vector2( 521.473, 586.786 )
+points = 10
+
+[node name="bucket5" parent="buckets" instance=ExtResource( 4 )]
+position = Vector2( 665.167, 586.786 )
+points = 20
+
+[node name="bucket6" parent="buckets" instance=ExtResource( 4 )]
+position = Vector2( 811.984, 586.786 )
+points = 30
+
+[node name="hud" type="Node2D" parent="."]
+
+[node name="RemainingBallsLabel" type="Label" parent="hud"]
+margin_left = 64.0
+margin_top = 8.0
+margin_right = 300.0
+margin_bottom = 36.0
+custom_fonts/font = ExtResource( 6 )
+text = "Remaining balls:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RemainingBallsValue" type="Label" parent="hud"]
+margin_left = 312.0
+margin_top = 8.0
+margin_right = 417.0
+margin_bottom = 36.0
+custom_fonts/font = ExtResource( 6 )
+text = "5"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreLabel" type="Label" parent="hud"]
+margin_left = 776.0
+margin_top = 8.0
+margin_right = 884.0
+margin_bottom = 36.0
+custom_fonts/font = ExtResource( 6 )
+text = "Score:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreValue" type="Label" parent="hud"]
+margin_left = 896.0
+margin_top = 9.51184
+margin_right = 1004.0
+margin_bottom = 37.5118
+custom_fonts/font = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+autoplay = true
+[connection signal="ball_spawned" from="BallSpawner" to="." method="_on_BallSpawner_ball_spawned"]

@@ -23,15 +23,18 @@ func _process(delta: float) -> void:
     var acceleration_strength = _get_acceleration_strength()
     if !is_zero_approx(acceleration_strength):
         tmp_velocity.y += acceleration_strength * ACCELERATION * delta
+    elif abs(tmp_velocity.y) < 0.05:
+        tmp_velocity.y = 0
     elif !is_zero_approx(tmp_velocity.y):
-        tmp_velocity.y += FRICTION * delta
+        tmp_velocity.y += sign(tmp_velocity.y) * -1 * FRICTION * delta
 
-    tmp_velocity.y = clamp(tmp_velocity.y, -MAX_VELOCITY, 0)
+    tmp_velocity.y = clamp(tmp_velocity.y, -MAX_VELOCITY, MAX_VELOCITY)
 
     # rotate wheel angle
     var turn_strength = _get_turn_strength()
     if !is_zero_approx(turn_strength):
-        _wheel_rotation += turn_strength * WHEEL_ANGULAR_VELOCITY * delta
+#        var velocity_effect = tmp_velocity.length() / MAX_VELOCITY
+        _wheel_rotation += turn_strength * WHEEL_ANGULAR_VELOCITY * delta #* velocity_effect
     elif abs(_wheel_rotation) < 0.05:
         _wheel_rotation = 0
     elif !is_zero_approx(_wheel_rotation):
@@ -49,8 +52,9 @@ func _physics_process(delta: float) -> void:
 
 func _get_acceleration_strength() -> float:
     var acceleration_strength = -1 * Input.get_action_strength("accelerate")
+    var deceleration_strength = Input.get_action_strength("decelerate")
 
-    return acceleration_strength
+    return acceleration_strength + deceleration_strength
 
 func _get_turn_strength() -> float:
     var left_strength = Input.get_action_strength("turn_left") * -1

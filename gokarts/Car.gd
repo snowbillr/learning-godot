@@ -1,39 +1,56 @@
 extends KinematicBody2D
+class_name Car
 
-const ACCELERATION = 800
-const MAX_SPEED = 400
-const FRICTION = 300
-const TURN_VELOCITY = PI
+# Car initially points at (0, -1)
 
-var _input_velocity = null
+const ACCELERATION = 500
+const MAX_VELOCITY = 800
+
+const FRICTION = 200
+
+const MAX_WHEEL_ROTATION = PI / 30
+const WHEEL_ANGULAR_VELOCITY = PI / 12
+const WHEEL_RETURN_ANGULAR_VELOCITY = PI / 4
+
 var _velocity = Vector2.ZERO
+var _wheel_rotation = 0
 
 func _process(delta: float) -> void:
-    var turn_amount = _get_turn_strength() * TURN_VELOCITY * delta
+    # tmp_velocity rotated back to vertical
+    var tmp_velocity = _velocity.rotated(-1 * rotation)
 
-    rotation += turn_amount
+    # apply acceleration to tmp_velocity
+    var acceleration_strength = _get_acceleration_strength()
+    if !is_zero_approx(acceleration_strength):
+        tmp_velocity.y += acceleration_strength * ACCELERATION * delta
+    elif !is_zero_approx(tmp_velocity.y):
+        tmp_velocity.y += FRICTION * delta
 
-    _velocity = _velocity.rotated(turn_amount)
+    tmp_velocity.y = clamp(tmp_velocity.y, -MAX_VELOCITY, 0)
 
-    var input_velocity = Vector2.ZERO
-    input_velocity.y += _get_acceleration_strength() * ACCELERATION * delta
-    input_velocity = input_velocity.rotated(rotation)
+    # rotate wheel angle
+    var turn_strength = _get_turn_strength()
+    if !is_zero_approx(turn_strength):
+        _wheel_rotation += turn_strength * WHEEL_ANGULAR_VELOCITY * delta
+    elif abs(_wheel_rotation) < 0.05:
+        _wheel_rotation = 0
+    elif !is_zero_approx(_wheel_rotation):
+        _wheel_rotation += sign(_wheel_rotation) * -1 * WHEEL_RETURN_ANGULAR_VELOCITY * delta
+    _wheel_rotation = clamp(_wheel_rotation, -MAX_WHEEL_ROTATION, MAX_WHEEL_ROTATION)
 
-    _velocity += input_velocity
+    # apply wheel rotation to overall rotation
+    rotation += _wheel_rotation
+    # velocity = rotated tmp velocity
 
-    if _velocity.length() > 0 && input_velocity.length() == 0:
-        _velocity = _velocity.move_toward(Vector2.ZERO, FRICTION * delta)
-
-    _velocity = _velocity.clamped(MAX_SPEED)
+    _velocity = tmp_velocity.rotated(rotation)
 
 func _physics_process(delta: float) -> void:
     move_and_slide(_velocity)
 
 func _get_acceleration_strength() -> float:
     var acceleration_strength = -1 * Input.get_action_strength("accelerate")
-    var deceleration_strength = Input.get_action_strength("decelerate")
 
-    return acceleration_strength + deceleration_strength
+    return acceleration_strength
 
 func _get_turn_strength() -> float:
     var left_strength = Input.get_action_strength("turn_left") * -1

@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Boon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/data/boons/ares/attack.tres" type="Resource" id=2]
+[ext_resource path="res://assets/data/boons/ares/special.tres" type="Resource" id=3]
+[ext_resource path="res://assets/data/boons/ares/cast.tres" type="Resource" id=4]
+[ext_resource path="res://assets/data/boons/ares/dash.tres" type="Resource" id=5]
+[ext_resource path="res://assets/data/boons/ares/cast-2-bm.tres" type="Resource" id=6]
+
+[node name="World" type="Node"]
+
+[node name="Ares" type="Node2D" parent="."]
+
+[node name="Attack" parent="Ares" instance=ExtResource( 1 )]
+position = Vector2( 176, 256 )
+boon_data = ExtResource( 2 )
+
+[node name="Special" parent="Ares" instance=ExtResource( 1 )]
+position = Vector2( 366, 256 )
+boon_data = ExtResource( 3 )
+
+[node name="Cast" parent="Ares" instance=ExtResource( 1 )]
+position = Vector2( 560, 256 )
+boon_data = ExtResource( 4 )
+
+[node name="Dash" parent="Ares" instance=ExtResource( 1 )]
+position = Vector2( 752, 256 )
+boon_data = ExtResource( 5 )
+
+[node name="Cast-2-BM" parent="Ares" instance=ExtResource( 1 )]
+position = Vector2( 664, 456 )
+boon_data = ExtResource( 6 )

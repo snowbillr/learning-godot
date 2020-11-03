@@ -30,6 +30,10 @@ config/name="hades-boon-explorer"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
 
+[debug]
+
+gdscript/warnings/unused_class_variable=true
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

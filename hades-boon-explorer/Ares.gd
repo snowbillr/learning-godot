@@ -1,7 +1,6 @@
 extends Node2D
 
-var Boon = preload("res://Boon.tscn")
-var BoonConnector = preload("res://BoonConnector.tscn")
+var BoonConnector = preload("res://scenes/BoonConnector.tscn")
 
 func _ready() -> void:
     var boons = $Boons.get_children()

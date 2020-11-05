@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://scripts/BoonData.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/ares/urge_to_kill.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+id = "ares-urge-to-kill"
+title = "Urge to Kill"
+icon = ExtResource( 2 )
+dependencies = [  ]

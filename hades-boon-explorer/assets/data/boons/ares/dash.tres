@@ -1,11 +1,11 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
-[ext_resource path="res://BoonData.gd" type="Script" id=1]
+[ext_resource path="res://scripts/BoonData.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/ares/blade_dash.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
-id = "ares-dash-1"
+id = "ares-dash"
 title = "Blade Dash"
 icon = ExtResource( 2 )
 dependencies = [  ]

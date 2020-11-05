@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://scripts/BoonData.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/ares/engulfing_vortex.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+id = "ares-engulfing-vortex"
+title = "Engulfing Vortex"
+icon = ExtResource( 2 )
+dependencies = [ [ "ares-dash", "ares-call", "ares-cast" ] ]

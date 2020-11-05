@@ -1,0 +1,83 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://assets/data/boons/ares/attack.tres" type="Resource" id=1]
+[ext_resource path="res://assets/data/boons/ares/cast.tres" type="Resource" id=2]
+[ext_resource path="res://assets/data/boons/ares/special.tres" type="Resource" id=3]
+[ext_resource path="res://assets/data/boons/ares/black-metal.tres" type="Resource" id=4]
+[ext_resource path="res://Ares.gd" type="Script" id=5]
+[ext_resource path="res://assets/data/boons/ares/dash.tres" type="Resource" id=6]
+[ext_resource path="res://scenes/Boon.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/data/boons/ares/call.tres" type="Resource" id=8]
+[ext_resource path="res://assets/data/boons/ares/vengeance.tres" type="Resource" id=9]
+[ext_resource path="res://assets/data/boons/ares/battle-rage.tres" type="Resource" id=10]
+[ext_resource path="res://assets/data/boons/ares/blood-frenzy.tres" type="Resource" id=11]
+[ext_resource path="res://assets/data/boons/ares/urge-to-kill.tres" type="Resource" id=12]
+[ext_resource path="res://assets/data/boons/ares/engulfing-vortex.tres" type="Resource" id=13]
+[ext_resource path="res://assets/data/boons/ares/dire-misfortune.tres" type="Resource" id=14]
+[ext_resource path="res://assets/data/boons/ares/impending-doom.tres" type="Resource" id=15]
+[ext_resource path="res://assets/data/boons/ares/vicious-cycle.tres" type="Resource" id=16]
+
+[node name="World" type="Node"]
+
+[node name="Ares" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="Boons" type="Node" parent="Ares"]
+
+[node name="Attack" parent="Ares/Boons" instance=ExtResource( 7 )]
+position = Vector2( 112, 128 )
+boon_data = ExtResource( 1 )
+
+[node name="Special" parent="Ares/Boons" instance=ExtResource( 7 )]
+position = Vector2( 272, 128 )
+boon_data = ExtResource( 3 )
+
+[node name="Cast" parent="Ares/Boons" instance=ExtResource( 7 )]
+position = Vector2( 496, 128 )
+boon_data = ExtResource( 2 )
+
+[node name="Dash" parent="Ares/Boons" instance=ExtResource( 7 )]
+position = Vector2( 688, 128 )
+boon_data = ExtResource( 6 )
+
+[node name="BlackMetal" parent="Ares/Boons" instance=ExtResource( 7 )]
+position = Vector2( 600, 256 )
+boon_data = ExtResource( 4 )
+
+[node name="Call" parent="Ares/Boons" instance=ExtResource( 7 )]
+position = Vector2( 880, 128 )
+boon_data = ExtResource( 8 )
+
+[node name="Vengeance" parent="Ares/Boons" instance=ExtResource( 7 )]
+position = Vector2( 368, 264 )
+boon_data = ExtResource( 9 )
+
+[node name="UrgeToKill" parent="Ares/Boons" instance=ExtResource( 7 )]
+position = Vector2( 608, 512 )
+boon_data = ExtResource( 12 )
+
+[node name="BattleRage" parent="Ares/Boons" instance=ExtResource( 7 )]
+position = Vector2( 480, 512 )
+boon_data = ExtResource( 10 )
+
+[node name="BloodFrenzy" parent="Ares/Boons" instance=ExtResource( 7 )]
+position = Vector2( 352, 512 )
+boon_data = ExtResource( 11 )
+
+[node name="EngulfingVortex" parent="Ares/Boons" instance=ExtResource( 7 )]
+position = Vector2( 792, 256 )
+boon_data = ExtResource( 13 )
+
+[node name="DireMisfortune" parent="Ares/Boons" instance=ExtResource( 7 )]
+position = Vector2( 128, 368 )
+boon_data = ExtResource( 14 )
+
+[node name="ImpendingDoom" parent="Ares/Boons" instance=ExtResource( 7 )]
+position = Vector2( 256, 368 )
+boon_data = ExtResource( 15 )
+
+[node name="ViciousCycle" parent="Ares/Boons" instance=ExtResource( 7 )]
+position = Vector2( 696, 376 )
+boon_data = ExtResource( 16 )
+
+[node name="Connectors" type="Node" parent="Ares"]

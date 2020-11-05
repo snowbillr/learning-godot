@@ -12,22 +12,28 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Boon",
 "language": "GDScript",
-"path": "res://Boon.gd"
+"path": "res://scenes/Boon.gd"
+}, {
+"base": "Node2D",
+"class": "BoonConnector",
+"language": "GDScript",
+"path": "res://scenes/BoonConnector.gd"
 }, {
 "base": "Resource",
 "class": "BoonData",
 "language": "GDScript",
-"path": "res://BoonData.gd"
+"path": "res://scripts/BoonData.gd"
 } ]
 _global_script_class_icons={
 "Boon": "",
+"BoonConnector": "",
 "BoonData": ""
 }
 
 [application]
 
 config/name="hades-boon-explorer"
-run/main_scene="res://World.tscn"
+run/main_scene="res://scenes/World.tscn"
 config/icon="res://icon.png"
 
 [debug]

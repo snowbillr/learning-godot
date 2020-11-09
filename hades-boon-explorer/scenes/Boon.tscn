@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/Boon.gd" type="Script" id=1]
 [ext_resource path="res://assets/data/boons/placeholder.tres" type="Resource" id=2]
 [ext_resource path="res://assets/images/placeholder.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/slots/special.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/slots/cast.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/slots/attack.png" type="Texture" id=6]
+[ext_resource path="res://assets/images/slots/call.png" type="Texture" id=7]
+[ext_resource path="res://assets/images/slots/dash.png" type="Texture" id=8]
 
 [node name="Boon" type="Node2D"]
 script = ExtResource( 1 )
@@ -20,3 +25,35 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Slots" type="Node2D" parent="."]
+
+[node name="Attack" type="Sprite" parent="Slots"]
+visible = false
+position = Vector2( -24, -24 )
+scale = Vector2( 0.28, 0.28 )
+texture = ExtResource( 6 )
+
+[node name="Special" type="Sprite" parent="Slots"]
+visible = false
+position = Vector2( -24, -24 )
+scale = Vector2( 0.28, 0.28 )
+texture = ExtResource( 4 )
+
+[node name="Cast" type="Sprite" parent="Slots"]
+visible = false
+position = Vector2( -24, -24 )
+scale = Vector2( 0.28, 0.28 )
+texture = ExtResource( 5 )
+
+[node name="Dash" type="Sprite" parent="Slots"]
+visible = false
+position = Vector2( -24, -24 )
+scale = Vector2( 0.28, 0.28 )
+texture = ExtResource( 8 )
+
+[node name="Call" type="Sprite" parent="Slots"]
+visible = false
+position = Vector2( -24, -24 )
+scale = Vector2( 0.28, 0.28 )
+texture = ExtResource( 7 )

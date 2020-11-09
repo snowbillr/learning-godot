@@ -36,6 +36,10 @@ config/name="hades-boon-explorer"
 run/main_scene="res://scenes/World.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Constants="*res://scripts/Constants.gd"
+
 [debug]
 
 gdscript/warnings/unused_class_variable=true

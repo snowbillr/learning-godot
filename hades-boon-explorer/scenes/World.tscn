@@ -22,7 +22,7 @@
 [node name="Ares" type="Node2D" parent="."]
 script = ExtResource( 5 )
 
-[node name="Boons" type="Node" parent="Ares"]
+[node name="Boons" type="Node2D" parent="Ares"]
 
 [node name="Attack" parent="Ares/Boons" instance=ExtResource( 7 )]
 position = Vector2( 112, 128 )
@@ -81,3 +81,5 @@ position = Vector2( 696, 376 )
 boon_data = ExtResource( 16 )
 
 [node name="Connectors" type="Node" parent="Ares"]
+
+[node name="Node2D" type="Node2D" parent="."]

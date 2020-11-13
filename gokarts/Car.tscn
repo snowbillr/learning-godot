@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Car.gd" type="Script" id=1]
+[ext_resource path="res://assets/car_blue_3.png" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 33.0094
+height = 68.1698
+
+[sub_resource type="Gradient" id=2]
+colors = PoolColorArray( 0, 0, 0, 1, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+lifetime_randomness = 0.26
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 15.0
+color_ramp = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 1
+emission_sphere_radius = 4.68
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 172.42
+angular_velocity = 173.79
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 20.0
+scale_random = 0.82
+color = Color( 0.690196, 0.690196, 0.690196, 0.556863 )
+
+[node name="Car" type="KinematicBody2D"]
+script = ExtResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 2, 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 24 )
+shape = SubResource( 1 )
+
+[node name="DriftTrailLeft" type="Particles2D" parent="."]
+position = Vector2( -16, 80 )
+emitting = false
+amount = 60
+lifetime = 0.6
+local_coords = false
+process_material = SubResource( 4 )
+
+[node name="DriftTrailRight" type="Particles2D" parent="."]
+position = Vector2( 16, 80 )
+emitting = false
+amount = 30
+lifetime = 0.6
+local_coords = false
+process_material = SubResource( 4 )
+
+[node name="Smog" type="Particles2D" parent="."]
+position = Vector2( 0, 80 )
+emitting = false
+amount = 30
+lifetime = 0.6
+randomness = 0.51
+local_coords = false
+process_material = SubResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, 24 )
+texture = ExtResource( 2 )

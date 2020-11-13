@@ -35,8 +35,7 @@ func _process(delta: float) -> void:
     # rotate wheel angle
     var turn_strength = _get_turn_strength()
     if !is_zero_approx(turn_strength):
-#        var velocity_effect = tmp_velocity.length() / MAX_VELOCITY
-        _wheel_rotation += turn_strength * WHEEL_ANGULAR_VELOCITY * delta #* velocity_effect
+        _wheel_rotation += turn_strength * WHEEL_ANGULAR_VELOCITY * delta
     elif abs(_wheel_rotation) < 0.05:
         _wheel_rotation = 0
     elif !is_zero_approx(_wheel_rotation):
@@ -56,11 +55,14 @@ func _process(delta: float) -> void:
         $DriftTrailLeft.emitting = false
         $DriftTrailRight.emitting = false
 
+    if _is_accelerating():
+        $Smog.emitting = true
+    else:
+        $Smog.emitting = false
+
     rotation += _wheel_rotation * velocity_factor * drifting_factor
 
-    # velocity = rotated tmp velocity
     if _is_drifting():
-        pass
         _velocity = (tmp_velocity * 0.98).rotated(rotation)
     else:
         _velocity = tmp_velocity.rotated(rotation)
@@ -81,3 +83,6 @@ func _get_turn_strength() -> float:
 
 func _is_drifting() -> bool:
     return Input.get_action_strength("drift") > 0
+
+func _is_accelerating() -> bool:
+    return _get_acceleration_strength() < 0 && _velocity.length() < MAX_VELOCITY

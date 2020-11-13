@@ -65,7 +65,7 @@ lifetime = 0.6
 local_coords = false
 process_material = SubResource( 4 )
 
-[node name="Smog" type="Particles2D" parent="."]
+[node name="ExhaustTrail" type="Particles2D" parent="."]
 position = Vector2( 0, 80 )
 emitting = false
 amount = 30

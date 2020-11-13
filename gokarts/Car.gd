@@ -56,9 +56,9 @@ func _process(delta: float) -> void:
         $DriftTrailRight.emitting = false
 
     if _is_accelerating():
-        $Smog.emitting = true
+        $ExhaustTrail.emitting = true
     else:
-        $Smog.emitting = false
+        $ExhaustTrail.emitting = false
 
     rotation += _wheel_rotation * velocity_factor * drifting_factor
 

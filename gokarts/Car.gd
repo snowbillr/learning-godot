@@ -42,9 +42,11 @@ func _process(delta: float) -> void:
     _wheel_rotation = clamp(_wheel_rotation, -MAX_WHEEL_ROTATION, MAX_WHEEL_ROTATION)
 
     # apply wheel rotation to overall rotation
-    rotation += _wheel_rotation
-    # velocity = rotated tmp velocity
+    var velocity_factor = tmp_velocity.length() / MAX_VELOCITY
+    # shouldn't be able to turn the car as fast at lower speeds
+    rotation += _wheel_rotation * velocity_factor
 
+    # velocity = rotated tmp velocity
     _velocity = tmp_velocity.rotated(rotation)
 
 func _physics_process(delta: float) -> void:

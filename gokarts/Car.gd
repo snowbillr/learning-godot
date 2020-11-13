@@ -4,7 +4,7 @@ class_name Car
 # Car initially points at (0, -1)
 
 const ACCELERATION = 500
-const MAX_VELOCITY = 800
+const MAX_VELOCITY = 1000
 
 const FRICTION = 200
 
@@ -55,10 +55,15 @@ func _process(delta: float) -> void:
     else:
         $DriftTrailLeft.emitting = false
         $DriftTrailRight.emitting = false
+
     rotation += _wheel_rotation * velocity_factor * drifting_factor
 
     # velocity = rotated tmp velocity
-    _velocity = tmp_velocity.rotated(rotation)
+    if _is_drifting():
+        pass
+        _velocity = (tmp_velocity * 0.98).rotated(rotation)
+    else:
+        _velocity = tmp_velocity.rotated(rotation)
 
 func _physics_process(delta: float) -> void:
     move_and_slide(_velocity)

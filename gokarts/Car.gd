@@ -8,7 +8,7 @@ const MAX_VELOCITY = 800
 
 const FRICTION = 200
 
-const MAX_WHEEL_ROTATION = PI / 40
+const MAX_WHEEL_ROTATION = PI / 60
 const WHEEL_ANGULAR_VELOCITY = PI / 12
 const WHEEL_RETURN_ANGULAR_VELOCITY = PI / 4
 
@@ -30,6 +30,8 @@ func _process(delta: float) -> void:
 
     tmp_velocity.y = clamp(tmp_velocity.y, -MAX_VELOCITY, MAX_VELOCITY)
 
+    # apply rotation
+
     # rotate wheel angle
     var turn_strength = _get_turn_strength()
     if !is_zero_approx(turn_strength):
@@ -44,7 +46,16 @@ func _process(delta: float) -> void:
     # apply wheel rotation to overall rotation
     var velocity_factor = tmp_velocity.length() / MAX_VELOCITY
     # shouldn't be able to turn the car as fast at lower speeds
-    rotation += _wheel_rotation * velocity_factor
+
+    var drifting_factor = 1
+    if _is_drifting():
+        drifting_factor = 1.4
+        $DriftTrailLeft.emitting = true
+        $DriftTrailRight.emitting = true
+    else:
+        $DriftTrailLeft.emitting = false
+        $DriftTrailRight.emitting = false
+    rotation += _wheel_rotation * velocity_factor * drifting_factor
 
     # velocity = rotated tmp velocity
     _velocity = tmp_velocity.rotated(rotation)
@@ -63,3 +74,5 @@ func _get_turn_strength() -> float:
     var right_strength = Input.get_action_strength("turn_right")
     return left_strength + right_strength
 
+func _is_drifting() -> bool:
+    return Input.get_action_strength("drift") > 0

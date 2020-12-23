@@ -25,6 +25,10 @@ func _physics_process(delta: float) -> void:
         direction = direction.normalized()
         $Pivot.look_at(translation + direction, Vector3.UP)
 
+        $AnimationPlayer.playback_speed = 4
+    else:
+        $AnimationPlayer.playback_speed = 1
+
     velocity.x = direction.x * speed
     velocity.z = direction.z * speed
     velocity.y -= fall_acceleration * delta
@@ -41,6 +45,8 @@ func _physics_process(delta: float) -> void:
             if Vector3.UP.dot(collision.normal) > 0.1:
                 mob.squash()
                 velocity.y += bounce_impulse
+
+    $Pivot.rotation.x = PI / 6 * velocity.y / jump_impulse
 
 func die() -> void:
     emit_signal("hit")

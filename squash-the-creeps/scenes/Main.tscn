@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Main.gd" type="Script" id=2]
 [ext_resource path="res://scenes/Mob.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/fonts/Montserrat-Medium.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://scenes/ScoreLabel.gd" type="Script" id=5]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 30, 1, 30 )
@@ -35,6 +37,15 @@ _data = {
 "points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -14.4896, 0.012825, -15.6678, 0, 0, 0, 0, 0, 0, 15.2913, 0.0123787, -16.019, 0, 0, 0, 0, 0, 0, 14.2297, -0.013649, 16.7188, 0, 0, 0, 0, 0, 0, -15.557, -0.0130501, 16.8822, 0, 0, 0, 0, 0, 0, -14.4896, 0.012825, -15.6678 ),
 "tilts": PoolRealArray( 0, 0, 0, 0, 0 )
 }
+
+[sub_resource type="DynamicFont" id=9]
+size = 32
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="Theme" id=10]
+default_font = SubResource( 9 )
 
 [node name="Main" type="Node"]
 script = ExtResource( 2 )
@@ -69,6 +80,7 @@ projection = 1
 size = 19.0
 
 [node name="Cylinders" type="Spatial" parent="."]
+visible = false
 
 [node name="MeshInstance" type="MeshInstance" parent="Cylinders"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2707, 0.000656128, -15.8163 )
@@ -98,5 +110,41 @@ curve = SubResource( 8 )
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
+
+[node name="UserInterface" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreLabel" type="Label" parent="UserInterface"]
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 115.0
+margin_bottom = 78.0
+custom_colors/font_color = Color( 0.937255, 0.627451, 0.0901961, 1 )
+text = "Score: 0"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Retry" type="ColorRect" parent="UserInterface"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.243137 )
+
+[node name="Label" type="Label" parent="UserInterface/Retry"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.5
+margin_top = -20.0
+margin_right = 160.5
+margin_bottom = 20.0
+text = "Press Enter to retry."
 [connection signal="hit" from="Player" to="." method="_on_Player_hit"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]

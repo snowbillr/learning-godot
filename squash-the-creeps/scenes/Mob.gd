@@ -13,8 +13,11 @@ func initialize(start_position: Vector3, player_position: Vector3):
     look_at(player_position, Vector3.UP)
     rotate_y(rand_range(-PI / 4, PI / 4))
 
-    velocity = Vector3.FORWARD * rand_range(min_speed, max_speed)
+    var random_speed = rand_range(min_speed, max_speed)
+    velocity = Vector3.FORWARD * random_speed
     velocity = velocity.rotated(Vector3.UP, rotation.y)
+
+    $AnimationPlayer.playback_speed = random_speed / min_speed
 
 func _physics_process(delta: float) -> void:
     move_and_slide(velocity)

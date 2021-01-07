@@ -1,6 +1,7 @@
 extends Node2D
 
 export(Texture) var texture
+export(bool) var enabled = true
 
 var is_dragging := false
 
@@ -25,14 +26,18 @@ func _input(event: InputEvent) -> void:
         position += event.relative
 
 func _on_Area2D_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+    if not enabled:
+        return
+
     if event is InputEventMouseButton:
         is_dragging = event.is_pressed()
         $Shadow.visible = is_dragging
 
+        tween.stop_all()
         if is_dragging:
-            tween.interpolate_property($Sprite, "offset:y", $Sprite.offset.y, -10, 0.2, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+            tween.interpolate_property($Sprite, "offset:y", $Sprite.offset.y, -10, 0.2, Tween.TRANS_QUART, Tween.EASE_OUT)
             tween.start()
         else:
-            tween.interpolate_property($Sprite, "offset:y", $Sprite.offset.y, 0, 0.2, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+            tween.interpolate_property($Sprite, "offset:y", $Sprite.offset.y, 0, 0.2, Tween.TRANS_QUART, Tween.EASE_OUT)
             tween.start()
 

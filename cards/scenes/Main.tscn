@@ -8,5 +8,15 @@
 [node name="World" type="Node2D" parent="."]
 
 [node name="Card" parent="World" instance=ExtResource( 1 )]
-position = Vector2( 519.193, 296.712 )
+position = Vector2( 266.527, 299.667 )
 card_data = ExtResource( 2 )
+
+[node name="Card2" parent="World" instance=ExtResource( 1 )]
+position = Vector2( 452.702, 301.883 )
+card_data = ExtResource( 2 )
+face_down = true
+
+[node name="Card3" parent="World" instance=ExtResource( 1 )]
+position = Vector2( 650.698, 300.406 )
+card_data = ExtResource( 2 )
+draggable = false

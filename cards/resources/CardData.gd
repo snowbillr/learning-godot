@@ -4,4 +4,4 @@ export(String) var suit
 export(String) var rank
 
 export(Texture) var front
-export var back = preload("res://assets/images/cards/card_back.png")
+export var back = preload("res://assets/images/cards/CardBack1.png")

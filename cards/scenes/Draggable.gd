@@ -37,13 +37,19 @@ func _on_Area2D_input_event(_viewport: Node, event: InputEvent, _shape_idx: int)
         is_dragging = event.is_pressed()
         $Shadow.visible = is_dragging
 
+        var draggable_group = get_tree().get_nodes_in_group("cards")
+        var max_z_index = 0
+        for item in draggable_group:
+            max_z_index = max(max_z_index, item.z_index)
+        for item in draggable_group:
+            if item.is_a_parent_of(self):
+                item.z_index = max_z_index + 1
+
         tween.stop_all()
         if is_dragging:
-            z_index += 10
             tween.interpolate_property($Sprite, "offset:y", $Sprite.offset.y, -10, 0.2, Tween.TRANS_QUART, Tween.EASE_OUT)
             tween.start()
         else:
-            z_index -= 10
             tween.interpolate_property($Sprite, "offset:y", $Sprite.offset.y, 0, 0.2, Tween.TRANS_QUART, Tween.EASE_OUT)
             tween.start()
 

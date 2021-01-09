@@ -1,7 +1,8 @@
 extends Node2D
 
 export(Texture) var texture
-export(bool) var enabled = true
+export(bool) var enabled := true
+export(String) var draggable_group_name
 
 var is_dragging := false
 
@@ -35,9 +36,9 @@ func _on_Area2D_input_event(_viewport: Node, event: InputEvent, _shape_idx: int)
 
     if event is InputEventMouseButton:
         is_dragging = event.is_pressed()
-        $Shadow.visible = is_dragging
+        shadow.visible = is_dragging
 
-        var draggable_group = get_tree().get_nodes_in_group("cards")
+        var draggable_group = get_tree().get_nodes_in_group(draggable_group_name)
         var max_z_index = 0
         for item in draggable_group:
             max_z_index = max(max_z_index, item.z_index)

@@ -6,6 +6,7 @@
 [node name="Card" type="Node2D" groups=[
 "cards",
 ]]
+scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 1 )
 
 [node name="Position2D" type="Position2D" parent="."]

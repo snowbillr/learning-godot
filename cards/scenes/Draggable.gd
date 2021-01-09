@@ -8,18 +8,22 @@ var is_dragging := false
 onready var sprite = $Sprite
 onready var shadow = $Shadow
 onready var tween = $Tween
+onready var handle = $Area2D/CollisionShape2D
 
 func _ready() -> void:
     sprite.texture = texture
 
     var sprite_width = sprite.texture.get_width()
     var sprite_height = sprite.texture.get_height()
+
     shadow.margin_left = -sprite_width / 2
     shadow.margin_right = sprite_width / 2
     shadow.margin_top = -sprite_height / 2
     shadow.margin_bottom = sprite_height / 2
     shadow.rect_position += Vector2(0, 10)
     shadow.visible = false
+
+    handle.shape.extents = Vector2(sprite_width / 2, sprite_height / 2)
 
 func _input(event: InputEvent) -> void:
     if event is InputEventMouseMotion and is_dragging:
@@ -35,9 +39,11 @@ func _on_Area2D_input_event(_viewport: Node, event: InputEvent, _shape_idx: int)
 
         tween.stop_all()
         if is_dragging:
+            z_index += 10
             tween.interpolate_property($Sprite, "offset:y", $Sprite.offset.y, -10, 0.2, Tween.TRANS_QUART, Tween.EASE_OUT)
             tween.start()
         else:
+            z_index -= 10
             tween.interpolate_property($Sprite, "offset:y", $Sprite.offset.y, 0, 0.2, Tween.TRANS_QUART, Tween.EASE_OUT)
             tween.start()
 

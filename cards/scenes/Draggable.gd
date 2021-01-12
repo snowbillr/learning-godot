@@ -1,6 +1,6 @@
 extends Node2D
 
-export(Texture) var texture
+export(Texture) var texture setget _set_texture
 export(bool) var enabled := true
 export(String) var draggable_group_name
 
@@ -25,6 +25,11 @@ func _ready() -> void:
     shadow.visible = false
 
     handle.shape.extents = Vector2(sprite_width / 2, sprite_height / 2)
+
+func _set_texture(value):
+    texture = value
+    if has_node("Sprite"):
+        $Sprite.texture = value
 
 func _input(event: InputEvent) -> void:
     if event is InputEventMouseMotion and is_dragging:

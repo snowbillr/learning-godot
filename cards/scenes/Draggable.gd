@@ -12,7 +12,7 @@ onready var tween = $Tween
 onready var handle = $Area2D/CollisionShape2D
 
 func _ready() -> void:
-    sprite.texture = texture
+    _set_texture(texture)
 
     var sprite_width = sprite.texture.get_width()
     var sprite_height = sprite.texture.get_height()

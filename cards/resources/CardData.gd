@@ -11,7 +11,4 @@ export var back = preload("res://assets/images/cards/BackRed.png")
 func _init(_suit, _rank) -> void:
     suit = _suit
     rank = _rank
-    print("card data init")
-    print(suit)
-    print(rank)
     front = load("res://assets/images/cards/" + suit + "/" + rank + ".png")

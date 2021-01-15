@@ -45,17 +45,30 @@ func _on_Area2D_input_event(_viewport: Node, event: InputEvent, _shape_idx: int)
 
         tween.stop_all()
         if is_dragging:
-            var draggable_group = get_tree().get_nodes_in_group(draggable_group_name)
-            var max_z_index = 0
-            for item in draggable_group:
-                max_z_index = max(max_z_index, item.z_index)
-            for item in draggable_group:
-                if item.is_a_parent_of(self):
-                    item.z_index = max_z_index + 1
-
-            tween.interpolate_property($Sprite, "offset:y", $Sprite.offset.y, -10, 0.2, Tween.TRANS_QUART, Tween.EASE_OUT)
-            tween.start()
+            start_dragging()
         else:
-            tween.interpolate_property($Sprite, "offset:y", $Sprite.offset.y, 0, 0.2, Tween.TRANS_QUART, Tween.EASE_OUT)
-            tween.start()
+            stop_dragging()
 
+func start_dragging():
+    is_dragging = true
+
+    tween.stop_all()
+
+    var draggable_group = get_tree().get_nodes_in_group(draggable_group_name)
+    var max_z_index = 0
+    for item in draggable_group:
+        max_z_index = max(max_z_index, item.z_index)
+    for item in draggable_group:
+        if item.is_a_parent_of(self):
+            item.z_index = max_z_index + 1
+
+    tween.interpolate_property(sprite, "offset:y", sprite.offset.y, -10, 0.2, Tween.TRANS_QUART, Tween.EASE_OUT)
+    tween.interpolate_property(sprite, "scale", sprite.scale, sprite.scale + Vector2(0.05, 0.05), 0.2, Tween.TRANS_QUART, Tween.EASE_OUT)
+    tween.start()
+
+func stop_dragging():
+    is_dragging = false
+
+    tween.interpolate_property(sprite, "offset:y", sprite.offset.y, 0, 0.2, Tween.TRANS_QUART, Tween.EASE_OUT)
+    tween.interpolate_property(sprite, "scale", sprite.scale, sprite.scale - Vector2(0.05, 0.05), 0.2, Tween.TRANS_QUART, Tween.EASE_OUT)
+    tween.start()

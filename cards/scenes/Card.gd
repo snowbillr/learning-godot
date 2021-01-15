@@ -1,6 +1,6 @@
 extends Node2D
 
-#export(Resource) var card_data
+class_name Card
 
 export(String, "clubs", "diamonds", "hearts", "spades") var suit = "clubs"
 export(String, "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A") var rank = "2"

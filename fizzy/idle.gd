@@ -10,8 +10,8 @@ func fizzy_exit(data) -> void:
     pass
 
 func _walking_trigger():
-    if Input.is_action_just_pressed("ui_left"):
+    if Input.is_action_pressed("ui_left"):
         return { "direction": Vector2.LEFT }
-    if Input.is_action_just_pressed("ui_right"):
+    if Input.is_action_pressed("ui_right"):
         return { "direction": Vector2.RIGHT }
     return null

@@ -3,7 +3,7 @@ extends Node
 var target
 var fsm: FizzyMachine
 
-var speed = 400
+export(int) var speed = 400
 var finished = false
 var direction
 

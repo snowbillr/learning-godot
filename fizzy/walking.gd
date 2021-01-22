@@ -3,7 +3,7 @@ extends Node
 var target
 var fsm: FizzyMachine
 
-var speed = 200
+export(int) var speed = 200
 var direction
 
 func fizzy_enter(data) -> void:
@@ -35,6 +35,6 @@ func _turnaround_trigger():
     return null
 
 func _sprint_trigger():
-    if Input.is_action_just_pressed("sprint"):
+    if Input.is_action_pressed("sprint"):
         return direction
     return null

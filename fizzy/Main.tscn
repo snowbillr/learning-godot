@@ -31,8 +31,9 @@ script = ExtResource( 3 )
 
 [node name="sprint" type="Node" parent="Player/FSM"]
 script = ExtResource( 7 )
+speed = 800
 
 [node name="Timer" type="Timer" parent="Player/FSM/sprint"]
-wait_time = 0.5
+wait_time = 0.3
 one_shot = true
 [connection signal="timeout" from="Player/FSM/sprint/Timer" to="Player/FSM/sprint" method="_on_Timer_timeout"]

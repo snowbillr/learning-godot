@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://FizzyMachine.gd" type="Script" id=1]
 [ext_resource path="res://idle.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Main.gd" type="Script" id=4]
 [ext_resource path="res://icon.png" type="Texture" id=5]
 [ext_resource path="res://Player.gd" type="Script" id=6]
+[ext_resource path="res://sprint.gd" type="Script" id=7]
 
 [node name="Node" type="Node"]
 script = ExtResource( 4 )
@@ -27,3 +28,11 @@ script = ExtResource( 2 )
 
 [node name="walking" type="Node" parent="Player/FSM"]
 script = ExtResource( 3 )
+
+[node name="sprint" type="Node" parent="Player/FSM"]
+script = ExtResource( 7 )
+
+[node name="Timer" type="Timer" parent="Player/FSM/sprint"]
+wait_time = 0.5
+one_shot = true
+[connection signal="timeout" from="Player/FSM/sprint/Timer" to="Player/FSM/sprint" method="_on_Timer_timeout"]

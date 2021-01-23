@@ -1,6 +1,6 @@
 extends Node
 
-class_name FizzyState
+class_name FizzyState, "res://addons/fizzy/fizzy_state_icon.png"
 
 var target
 var fsm: FizzyMachine

@@ -1,6 +1,6 @@
 extends Node
 
-class_name FizzyMachine
+class_name FizzyMachine, "res://addons/fizzy/fizzy_machine_icon.png"
 
 export(String) var initial_state_name = ""
 export(NodePath) var target_path = null

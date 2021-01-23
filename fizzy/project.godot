@@ -20,8 +20,8 @@ _global_script_classes=[ {
 "path": "res://addons/fizzy/fizzy_state.gd"
 } ]
 _global_script_class_icons={
-"FizzyMachine": "",
-"FizzyState": ""
+"FizzyMachine": "res://addons/fizzy/fizzy_machine_icon.png",
+"FizzyState": "res://addons/fizzy/fizzy_state_icon.png"
 }
 
 [application]

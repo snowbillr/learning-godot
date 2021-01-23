@@ -1,16 +1,14 @@
-extends Node
-
-var target
-var fsm: FizzyMachine
+extends FizzyState
 
 export(int) var speed = 400
 var finished = false
 var direction
 
 func fizzy_enter(data) -> void:
+    finished = false
+
     direction = data
     target.get_node("Sprite").rotation = direction.x * PI / 8
-    finished = false
     $Timer.start()
 
     fsm.register_transition_trigger("idle", funcref(self, "_idle_trigger"))
@@ -21,15 +19,6 @@ func fizzy_exit(data) -> void:
 
 func fizzy_process(delta: float) -> void:
     target.position += direction * speed * delta
-
-func fizzy_physics_process(delta: float) -> void:
-    pass
-
-func fizzy_input(event: InputEvent) -> void:
-    pass
-
-func fizzy_unhandled_input(event: InputEvent) -> void:
-    pass
 
 func _idle_trigger():
     if finished and not Input.is_action_pressed("ui_left") and not Input.is_action_pressed("ui_right"):

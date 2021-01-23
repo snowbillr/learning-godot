@@ -1,7 +1,4 @@
-extends Node
-
-var target
-var fsm: FizzyMachine
+extends FizzyState
 
 export(int) var speed = 200
 var direction

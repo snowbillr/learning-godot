@@ -1,13 +1,7 @@
-extends Node
-
-var target
-var fsm: FizzyMachine
+extends FizzyState
 
 func fizzy_enter(data) -> void:
     fsm.register_transition_trigger("walking", funcref(self, "_walking_trigger"))
-
-func fizzy_exit(data) -> void:
-    pass
 
 func _walking_trigger():
     if Input.is_action_pressed("ui_left"):

@@ -12,10 +12,16 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "FizzyMachine",
 "language": "GDScript",
-"path": "res://FizzyMachine.gd"
+"path": "res://addons/fizzy/fizzy_machine.gd"
+}, {
+"base": "Node",
+"class": "FizzyState",
+"language": "GDScript",
+"path": "res://addons/fizzy/fizzy_state.gd"
 } ]
 _global_script_class_icons={
-"FizzyMachine": ""
+"FizzyMachine": "",
+"FizzyState": ""
 }
 
 [application]
@@ -23,6 +29,10 @@ _global_script_class_icons={
 config/name="Fizzy"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "fizzy" )
 
 [input]
 

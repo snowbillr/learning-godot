@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://FizzyMachine.gd" type="Script" id=1]
+[ext_resource path="res://FSM.gd" type="Script" id=1]
 [ext_resource path="res://idle.gd" type="Script" id=2]
 [ext_resource path="res://walking.gd" type="Script" id=3]
 [ext_resource path="res://Main.gd" type="Script" id=4]

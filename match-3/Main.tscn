@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Board.gd" type="Script" id=3]
+
+[node name="Main" type="Node"]
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Board" type="Position2D" parent="World"]
+position = Vector2( 263, 145 )
+script = ExtResource( 3 )
+rows = 10
+columns = 10
+
+[node name="SwapTween" type="Tween" parent="World/Board"]
+
+[node name="ShakeTween" type="Tween" parent="World/Board"]

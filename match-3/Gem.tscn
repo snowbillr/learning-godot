@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Gem.gd" type="Script" id=1]
+[ext_resource path="res://assets/board-spritesheet.png" type="Texture" id=2]
+
+[node name="Gem" type="Sprite"]
+z_index = 10
+z_as_relative = false
+texture = ExtResource( 2 )
+vframes = 10
+hframes = 10
+script = ExtResource( 1 )

@@ -26,14 +26,12 @@ func _ready() -> void:
         var button = Button.new()
         button.text = "Transition %s" % i
         button.connect("pressed", self, "_on_Button_pressed", [i])
+        button.rect_min_size.y = 50
+
+        button.expand_icon = true
+        button.icon = transition_sources[i]
+
         button_container.add_child(button)
-
-        var icon = Sprite.new()
-        icon.texture = transition_sources[i]
-        icon.scale = Vector2(20, 20) / transition_sources[i].get_size()
-        button.add_child(icon)
-        icon.position = Vector2(10, 10)
-
 
 func _on_Button_pressed(transition_index: int) -> void:
     _play_transition_with_texture(transition_sources[transition_index])

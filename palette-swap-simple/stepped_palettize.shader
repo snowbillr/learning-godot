@@ -10,7 +10,7 @@ float stepped(float value) {
 
 void fragment() {
 	vec4 color = texture(TEXTURE, UV);
-	float avg_color = (color.r + color.g + color.b) / 3.0;
+	float avg_color = dot(color.rgb, vec3(0.3, 0.59, 0.11)); // fancy desaturate
 	float stepped_value = stepped(avg_color);
 	
 	vec4 stepped_color = texture(palette, vec2(stepped_value, 0));

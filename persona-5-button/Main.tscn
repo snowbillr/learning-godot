@@ -1,6 +1,12 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://PersonaButton.gd" type="Script" id=1]
+[ext_resource path="res://Persona.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=3]
+size = 48
+outline_size = 1
+font_data = ExtResource( 2 )
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -28,7 +34,7 @@ margin_left = 311.519
 margin_top = 160.973
 margin_right = 351.519
 margin_bottom = 174.973
-rect_scale = Vector2( 5.2, 5.2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Start"
 __meta__ = {
@@ -37,7 +43,7 @@ __meta__ = {
 
 [node name="PersonaButton" type="Polygon2D" parent="."]
 material = SubResource( 2 )
-position = Vector2( 179.174, 88.0592 )
+position = Vector2( 183.084, 93.2729 )
 scale = Vector2( 0.532286, 0.54386 )
 polygon = PoolVector2Array( 213.089, 123.044, 585.869, 123.696, 586.521, 271.635, 221.561, 271.635 )
 script = ExtResource( 1 )
